@@ -27,16 +27,23 @@
 ; code starts here and gets added to the end of the REM 
 ;------------------------------------------------------------
 	ld de, $0408
-	xor a
-	add a, $04
+	ld b, $07
+	dec b
 l0
 	ret z
 	call print_set
 	call dispstring
 	inc d
 	inc e
-	dec a
-	jp l0
+vbl
+	ld a,(FRAMES)
+	ld c, a
+sync
+	ld a,(FRAMES)
+	cp c
+	jr z, sync
+	dec b
+	jr l0
 
 ; Position the cursor for printing at a specific screen location
 print_set
