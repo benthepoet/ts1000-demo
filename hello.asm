@@ -38,6 +38,7 @@ l0
 	dec a
 	jp l0
 
+; Position the cursor for printing at a specific screen location
 print_set
 	push af
 	push de
@@ -47,12 +48,12 @@ print_set
 	add a, d
 	ld d, $00
 	add hl, de
+	jr z, l1end
 	ld e, $21
 l1
-	jp z, l1end
 	add hl, de
 	dec a
-	jr l1
+	jr nz, l1
 l1end
 	pop de
 	pop af
