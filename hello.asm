@@ -27,7 +27,7 @@
 ; code starts here and gets added to the end of the REM 
 ;------------------------------------------------------------
 	ld de, $0408
-	ld a, $00
+	xor a
 	add a, $04
 l0
 	ret z
@@ -43,7 +43,7 @@ print_set
 	push de
 	ld hl,(D_FILE)
 	inc hl
-	ld a, $00
+	xor a
 	add a, d
 	ld d, $00
 	add hl, de
