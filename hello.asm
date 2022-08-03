@@ -28,9 +28,7 @@
 ;------------------------------------------------------------
 	ld de, $0408
 	ld b, $07
-	dec b
 l0
-	ret z
 	call print_set
 	call dispstring
 	inc d
@@ -42,8 +40,7 @@ sync
 	ld a,(FRAMES)
 	cp c
 	jr z, sync
-	dec b
-	jr l0
+	djnz l0
 
 ; Position the cursor for printing at a specific screen location
 print_set
